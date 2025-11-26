@@ -27,9 +27,16 @@ mongod
 ```bash
 cd backend
 npm install
+
+# Create .env file (optional - app will use defaults if not present)
+# Copy env.example to .env and update values if needed
+# cp env.example .env
+
 npm run start:dev
 ```
 The backend will run on **http://localhost:3001**
+
+**Note:** The `.env` file is located in the `backend/` folder. If you don't create one, the app will use default values (MongoDB on localhost:27017, port 3001). See the Configuration section below for more details.
 
 #### 3. Setup and Run Frontend (Next.js)
 Open a new terminal:
@@ -294,20 +301,38 @@ All endpoints are prefixed with `http://localhost:3001/todos`
 
 ## 🔧 Configuration
 
-### MongoDB Connection
-If your MongoDB is not running on `localhost:27017`, update the connection string in `backend/src/app.module.ts`:
-```typescript
-MongooseModule.forRoot('mongodb://YOUR_HOST:YOUR_PORT/todoapp')
+### Environment Variables (.env file)
+
+The backend uses environment variables for configuration. The `.env` file should be located in the `backend/` folder.
+
+**Location:** `backend/.env`
+
+**To set up:**
+1. Copy `backend/env.example` to `backend/.env`
+2. Update the values as needed:
+
+```env
+# MongoDB Connection String
+MONGODB_URI=mongodb://localhost:27017/todoapp
+
+# Server Port
+PORT=3001
+
+# CORS Origins (comma-separated list)
+CORS_ORIGINS=http://localhost:3000,http://localhost:3002
 ```
 
-### CORS Settings
-If your frontend runs on a different port, update CORS in `backend/src/main.ts`:
-```typescript
-app.enableCors({
-  origin: 'http://localhost:YOUR_PORT',
-  ...
-});
+**Default Values (if .env not provided):**
+- MongoDB: `mongodb://localhost:27017/todoapp`
+- Port: `3001`
+- CORS: `http://localhost:3000,http://localhost:3002`
+
+**For MongoDB Atlas (Cloud):**
+```env
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/todoapp
 ```
+
+**Note:** The `.env` file is ignored by git (see `.gitignore`) to keep sensitive information private. Make sure to create your own `.env` file from `env.example`.
 
 ---
 
@@ -331,7 +356,9 @@ app.enableCors({
 **Backend won't start:**
 - Check if MongoDB is running
 - Verify port 3001 is not in use
+- Make sure you've installed dependencies: `npm install` (including @nestjs/config for .env support)
 - Check terminal for error messages
+- If using .env file, verify it's in the `backend/` folder and has correct format
 
 **Frontend can't connect to backend:**
 - Ensure backend is running on port 3001

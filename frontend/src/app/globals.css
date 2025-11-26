@@ -1,208 +1,371 @@
+/**
+ * globals.css - Global Stylesheet
+ * 
+ * This file contains all global CSS styles for the application.
+ * These styles are applied to the entire application.
+ * 
+ * CSS Selectors:
+ * - * (universal selector) - applies to all elements
+ * - .className - applies to elements with that class
+ * - :hover, :focus - pseudo-classes for interactive states
+ * - @media - media queries for responsive design
+ */
+
+/* ===== CSS Reset ===== */
+/* 
+ * Universal selector resets default browser styles
+ * - margin: 0 - removes default margins
+ * - padding: 0 - removes default padding
+ * - box-sizing: border-box - includes padding/border in element width/height
+ */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* ===== Body Styles ===== */
+/* 
+ * Base styles for the entire page
+ * - font-family: System fonts that look native on any OS
+ * - font-smoothing: Makes fonts appear crisper on screens
+ * - background: Beautiful purple gradient background
+ * - min-height: Ensures page fills viewport height
+ * - padding: Adds space around the content
+ */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  min-height: 100vh;
-  padding: 20px;
+  -webkit-font-smoothing: antialiased; /* Smooth fonts on WebKit browsers (Chrome, Safari) */
+  -moz-osx-font-smoothing: grayscale; /* Smooth fonts on Firefox/Mac */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Purple gradient background */
+  min-height: 100vh; /* Minimum height of 100% of viewport height */
+  padding: 20px; /* Padding around the entire page */
 }
 
+/* ===== Container ===== */
+/* 
+ * Main container centers content and limits width for readability
+ * - max-width: Limits width on large screens
+ * - margin: 0 auto - Centers the container horizontally
+ */
 .container {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0 auto; /* Centers horizontally: 0 top/bottom, auto left/right */
 }
 
+/* ===== Page Title ===== */
+/* 
+ * Styling for the main heading
+ * - color: White text for contrast against gradient background
+ * - text-shadow: Adds depth and readability
+ */
 h1 {
   color: white;
   text-align: center;
   margin-bottom: 30px;
-  font-size: 2.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 2.5rem; /* Large font size for prominence */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Shadow for text readability */
 }
 
+/* ===== Create Todo Form ===== */
+/* 
+ * Form container styling
+ * - background: White card on gradient background
+ * - box-shadow: Creates depth/elevation effect
+ * - display: flex - Flexbox layout
+ * - flex-direction: column - Stacks form elements vertically
+ * - gap: Space between form elements
+ */
 .form {
   background: white;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   margin-bottom: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  display: flex; /* Flexbox layout */
+  flex-direction: column; /* Stack children vertically */
+  gap: 10px; /* Space between form fields */
 }
 
+/* ===== Input Fields ===== */
+/* 
+ * Styling for text input fields
+ * - padding: Internal spacing for comfortable typing
+ * - border: Visible border with light gray color
+ * - transition: Smooth color change on focus
+ */
 .input {
   padding: 12px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid #e0e0e0; /* Light gray border */
   border-radius: 5px;
   font-size: 16px;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s; /* Smooth border color transition */
 }
 
+/* Input Focus State */
+/* 
+ * When user clicks/focuses on input:
+ * - outline: none - Removes default browser focus outline
+ * - border-color: Changes to purple to indicate focus
+ */
 .input:focus {
-  outline: none;
-  border-color: #667eea;
+  outline: none; /* Remove default browser outline */
+  border-color: #667eea; /* Purple border when focused */
 }
 
+/* ===== Buttons Base Styles ===== */
+/* 
+ * Base styles shared by all buttons
+ * - cursor: pointer - Shows hand cursor on hover
+ * - transition: Smooth animation for all property changes
+ */
 .btn {
-  padding: 12px 24px;
-  border: none;
-  border-radius: 5px;
+  padding: 12px 24px; /* Internal spacing: 12px vertical, 24px horizontal */
+  border: none; /* Remove default button border */
+  border-radius: 5px; /* Rounded corners */
   font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-weight: 500;
+  cursor: pointer; /* Hand cursor on hover */
+  transition: all 0.3s; /* Smooth transitions for all properties */
+  font-weight: 500; /* Medium font weight */
 }
 
+/* ===== Button Variants ===== */
+/* 
+ * Different button colors for different actions:
+ * - Primary: Main action (Add Todo)
+ * - Success: Positive action (Save)
+ * - Edit: Editing action (Edit)
+ * - Danger: Destructive action (Delete)
+ * - Secondary: Cancel/neutral action
+ */
+
+/* Primary Button - Main actions */
 .btn-primary {
-  background: #667eea;
+  background: #667eea; /* Purple background */
   color: white;
 }
 
+/* Primary Button Hover Effect */
+/* 
+ * Interactive feedback when hovering:
+ * - Darker background color
+ * - Slight upward movement (translateY)
+ * - Enhanced shadow for depth
+ */
 .btn-primary:hover {
-  background: #5568d3;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background: #5568d3; /* Darker purple on hover */
+  transform: translateY(-2px); /* Moves button up 2px on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
 }
 
+/* Success Button - Positive actions (Save) */
 .btn-success {
-  background: #48bb78;
+  background: #48bb78; /* Green background */
   color: white;
 }
 
 .btn-success:hover {
-  background: #38a169;
+  background: #38a169; /* Darker green on hover */
 }
 
+/* Edit Button - Editing actions */
 .btn-edit {
-  background: #ed8936;
+  background: #ed8936; /* Orange background */
   color: white;
 }
 
 .btn-edit:hover {
-  background: #dd6b20;
+  background: #dd6b20; /* Darker orange on hover */
 }
 
+/* Danger Button - Destructive actions (Delete) */
 .btn-danger {
-  background: #f56565;
+  background: #f56565; /* Red background */
   color: white;
 }
 
 .btn-danger:hover {
-  background: #e53e3e;
+  background: #e53e3e; /* Darker red on hover */
 }
 
+/* Secondary Button - Cancel/neutral actions */
 .btn-secondary {
-  background: #a0aec0;
+  background: #a0aec0; /* Gray background */
   color: white;
 }
 
 .btn-secondary:hover {
-  background: #718096;
+  background: #718096; /* Darker gray on hover */
 }
 
+/* ===== Todo List Container ===== */
+/* 
+ * Container for all todo items
+ * - flexbox layout stacks todos vertically
+ * - gap: Space between each todo item
+ */
 .todo-list {
   display: flex;
-  flex-direction: column;
-  gap: 15px;
+  flex-direction: column; /* Stack todos vertically */
+  gap: 15px; /* Space between todo items */
 }
 
+/* ===== Individual Todo Item ===== */
+/* 
+ * Styling for each todo card
+ * - White card with shadow on gradient background
+ * - Flexbox layout: content on left, buttons on right
+ * - transition: Smooth hover animation
+ */
 .todo-item {
   background: white;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: transform 0.2s;
+  justify-content: space-between; /* Space between content and buttons */
+  align-items: center; /* Vertically center items */
+  transition: transform 0.2s; /* Smooth transform animation */
 }
 
+/* Todo Item Hover Effect */
+/* 
+ * Interactive feedback - lifts card slightly on hover
+ */
 .todo-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px); /* Move up 2px on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow */
 }
 
+/* Completed Todo Item */
+/* 
+ * Visual indication that todo is completed
+ * - Reduced opacity makes it appear faded/dimmed
+ */
 .todo-item.completed {
-  opacity: 0.7;
+  opacity: 0.7; /* 70% opacity - appears faded */
 }
 
+/* ===== Todo Content Section ===== */
+/* 
+ * Left side of todo item: checkbox + text
+ * - flex: 1 - Takes up available space
+ * - align-items: center - Vertically centers checkbox and text
+ */
 .todo-content {
   display: flex;
-  align-items: center;
-  gap: 15px;
-  flex: 1;
+  align-items: center; /* Vertically center checkbox and text */
+  gap: 15px; /* Space between checkbox and text */
+  flex: 1; /* Takes up remaining space */
 }
 
+/* ===== Checkbox ===== */
+/* 
+ * Checkbox for marking todos as complete
+ * - Larger size for easier clicking
+ */
 .checkbox {
   width: 20px;
   height: 20px;
-  cursor: pointer;
+  cursor: pointer; /* Hand cursor on hover */
 }
 
+/* ===== Todo Text ===== */
+/* 
+ * Styling for todo title and description text
+ */
 .todo-text h3 {
-  margin: 0;
-  color: #2d3748;
-  font-size: 1.2rem;
+  margin: 0; /* Remove default margin */
+  color: #2d3748; /* Dark gray text */
+  font-size: 1.2rem; /* Larger font for title */
 }
 
 .todo-text p {
-  margin: 5px 0 0 0;
-  color: #718096;
-  font-size: 0.9rem;
+  margin: 5px 0 0 0; /* Small top margin */
+  color: #718096; /* Medium gray for description */
+  font-size: 0.9rem; /* Slightly smaller font */
 }
 
+/* ===== Completed Todo Text ===== */
+/* 
+ * Visual styling for completed todos:
+ * - Line-through text decoration (strikethrough)
+ * - Lighter gray color
+ */
 .completed .todo-text h3 {
-  text-decoration: line-through;
-  color: #a0aec0;
+  text-decoration: line-through; /* Strikethrough text */
+  color: #a0aec0; /* Lighter gray */
 }
 
 .completed .todo-text p {
-  text-decoration: line-through;
+  text-decoration: line-through; /* Strikethrough text */
 }
 
+/* ===== Button Group ===== */
+/* 
+ * Container for action buttons (Edit, Delete)
+ * - Groups buttons horizontally with spacing
+ */
 .btn-group {
   display: flex;
-  gap: 10px;
+  gap: 10px; /* Space between buttons */
 }
 
+/* ===== Edit Form ===== */
+/* 
+ * Form that appears when editing a todo
+ * - Full width of todo item
+ * - Stacks inputs vertically
+ */
 .edit-form {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
+  flex-direction: column; /* Stack inputs vertically */
+  gap: 10px; /* Space between inputs */
+  width: 100%; /* Full width of parent */
 }
 
+/* ===== Empty State ===== */
+/* 
+ * Message shown when there are no todos
+ * - Centered text
+ * - Semi-transparent white background for visibility on gradient
+ */
 .empty {
   text-align: center;
   color: white;
   font-size: 1.2rem;
   padding: 40px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1); /* 10% opacity white background */
   border-radius: 10px;
 }
 
+/* ===== Responsive Design (Mobile) ===== */
+/* 
+ * Media Query: Applies styles only on screens 600px wide or smaller
+ * 
+ * On mobile devices:
+ * - Todo items stack vertically instead of horizontal
+ * - Buttons take full width and equal space
+ * - Better touch targets for mobile interaction
+ */
 @media (max-width: 600px) {
+  /* Stack todo content vertically on mobile */
   .todo-item {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: column; /* Stack content vertically */
+    align-items: flex-start; /* Align items to left */
   }
 
+  /* Make buttons full width on mobile */
   .btn-group {
-    width: 100%;
-    margin-top: 10px;
+    width: 100%; /* Full width of container */
+    margin-top: 10px; /* Space above buttons */
   }
 
+  /* Buttons share space equally */
   .btn {
-    flex: 1;
+    flex: 1; /* Each button takes equal space */
   }
 }
 
